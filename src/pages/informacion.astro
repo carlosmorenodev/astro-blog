@@ -1,0 +1,38 @@
+---
+import Layout from "../layouts/Layout.astro";
+const pageTitle= "Información";
+---
+
+<Layout title={pageTitle}>
+    <h1>{pageTitle}</h1>
+
+    <p>Bienvenidos a mi primer proyecto con Astro. La verdad es que me ha gustado mucho trabajar con este framework. Es fácil y potente. No quiero ni imaginar cómo será cuando lo potencie con React. Pero eso será más adelante.</p>
+    <p>En este primer proyecto he decidido hacer algo fácil, sin muchas florituras, aunque me gustaría ir mejorándolo con el tiempo. Es un blog sencillo con gestión de etiquetas. En un futuro me gustaría añadirle un sistema de paginación para la página principal y más cosillas que se me vayan ocurriendo. Mientras tanto, podeis ver el código en mi Github, visitar mi Linkedin, mi Codepen o mi portfolio (el cual tengo que mejorar, sin duda). Sois bien recibidos en mis pequeños rinconcitos de internet.</p>
+    <p>Gracias!!!!</p>
+
+    <h2><a href="https://carlosmorenodev.github.io/carlosmorenodev/" target=”_blank”>Portfolio</a></h2>
+    <h2><a href="https://github.com/carlosmorenodev" target=”_blank”>Github</a></h2>
+    <h2><a href="https://www.linkedin.com/in/carlosmorenomartindev/" target=”_blank”>Linkedin</a></h2>
+    <h2><a href="https://codepen.io/carlosmmdev" target=”_blank”>Codepen</a></h2>   
+    <h2><a href="mailto:carlosmorenomartindev@gmail.com">carlosmorenomartindev@gmail.com</a></h2>
+</Layout>
+
+<style>
+    h1 {
+        margin-bottom: 15px;
+    }
+    
+    p {
+        margin-bottom: 10px;
+        padding: 0 30px;
+    }
+
+    h2 {
+        text-align: center;
+        padding-bottom: 5px;
+        & a {
+            color: black;
+            
+        }
+    }
+</style>

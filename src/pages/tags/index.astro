@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+const allPosts = await getCollection("posts");
+const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+const pageTitle = "Etiquetas";
+---
+
+<Layout title={pageTitle}>
+    <h1>{pageTitle}</h1>
+    <div class="tags">
+        {
+            tags.map((tag) => (
+                <p class="tag">
+                    <a href={`/tags/${tag}`}>{tag}</a>
+                </p>
+            ))
+        }
+    </div>
+</Layout>
+
+<style>
+
+    .tags {
+        display: flex;
+        gap: 20px;
+    }
+    .tag {
+        margin-top: 10px;
+        & a {
+            background-color: #111;
+            color: white;
+            text-decoration: none;
+            padding: 5px 20px;
+        }
+    }
+</style>

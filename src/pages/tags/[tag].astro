@@ -1,0 +1,72 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("posts");
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection("posts");
+
+  const uniqueTags = [
+    ...new Set(allPosts.map((post) => post.data.tags).flat()),
+  ];
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.data.tags.includes(tag),
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<Layout pageTitle={tag}>
+  <p class="tag-info">Entradas etiquetadas con <span>{tag}</span>:</p>
+  {
+    posts.map((post) => (
+      <>
+        <div class="post">
+          <h2 class="post-title">
+            <a href={`/posts/${post.slug}/`}>{post.data.title}</a>
+          </h2>
+          <div class="post-info">
+            <p>{post.data.pubDate.toString().slice(0, 10)}</p>
+          </div>
+          <figure class="post-img">
+            <img src={post.data.image.url} alt={post.data.image.alt} />
+          </figure>
+          <p class="post-description">{post.data.description}</p>
+          <div class="post-tags">
+            {post.data.tags.map((tag) => (
+              <p>
+                <a href={`/tags/${tag}`} class="tag">
+                  {tag}
+                </a>
+              </p>
+            ))}
+          </div>
+
+          <div class="leer-mas">
+            <a class="leer-mas-button" href={`/posts/${post.slug}/`}>
+              Leer más
+            </a>
+          </div>
+        </div>
+      </>
+    ))
+  }
+</Layout>
+
+<style>
+  .tag-info {
+    margin-bottom: 30px;
+    & span {
+      font-weight: bolder;
+    }
+  }
+</style>

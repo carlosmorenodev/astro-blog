@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("posts");
+const sortedPosts = allPosts.sort(
+	(a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+);
+---
+
+<Layout title="Página principal">
+	<main>
+		{
+			sortedPosts.map((post) => (
+				<div class="post">
+					<h2 class="post-title">
+						<a href={`/posts/${post.slug}/`}>{post.data.title}</a>
+					</h2>
+					<div class="post-info">
+						<p>{post.data.pubDate.toString().slice(0, 10)}</p> 
+						
+					</div>
+					<figure class="post-img">
+						<img
+							src={post.data.image.url}
+							alt={post.data.image.alt}
+						/>
+					</figure>
+					<p class="post-description">{post.data.description}</p>
+					<div class="post-tags">
+						<p>Etiquetas:</p>
+						{post.data.tags.map((tag) => (
+							<p>
+								<a href={`/tags/${tag}`} class="tag">
+									{tag}
+								</a>
+							</p>
+						))}
+					</div>
+					<div class="leer-mas">
+						<a
+							class="leer-mas-button"
+							href={`/posts/${post.slug}/`}
+						>
+							Leer más
+						</a>
+					</div>
+				</div>
+			))
+		}
+	</main>
+</Layout>
+
+<style></style>

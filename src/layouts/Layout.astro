@@ -1,0 +1,48 @@
+---
+/* interface Props {
+	title: string;
+} */
+
+import "../styles/global.css";
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Blog programado con Astro | {title}</title>
+	</head>
+	<body>
+		<header>
+			<div class="logo">BLOG PROGRAMADO CON ASTRO</div>
+			<nav class="main-nav">
+				<a href="/">Inicio</a>
+				<a href="/tags">Etiquetas</a>
+				<a href="/informacion">Información</a>
+			</nav>
+		</header>
+		<div class="container">
+			<slot />
+		</div>
+		<footer>
+			<p>Web programada y diseñada por Carlos Moreno Martín</p>
+			<nav class="social">
+				<a href="https://www.linkedin.com/in/carlosmorenomartindev/" target=”_blank”><i class="fa-brands fa-linkedin"></i></a>
+				<a href="https://github.com/carlosmorenodev" target=”_blank”><i class="fa-brands fa-github"></i></a>
+				<a href="https://codepen.io/carlosmmdev" target=”_blank”><i class="fa-brands fa-codepen"></i></a>
+				<a href="mailto:carlosmorenomartindev@gmail.com" target=”_blank”><i class="fa-solid fa-envelope"></i></a>
+				<a href="https://carlosmorenodev.github.io/carlosmorenodev/" target=”_blank”><i class="fa-solid fa-link"></i></a>
+			</nav>
+		</footer>
+
+		<script
+			src="https://kit.fontawesome.com/2e5476f1d5.js"
+			crossorigin="anonymous"></script>
+	</body>
+</html>

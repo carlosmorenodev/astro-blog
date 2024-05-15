@@ -1,0 +1,106 @@
+---
+import Layout from "./Layout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+    <!--  <div class="post"> -->
+    <h2 class="post-title">
+        {frontmatter.title}
+    </h2>
+
+    <div class="post-info">
+        <p class="post-date">
+            {frontmatter.pubDate.toString().slice(0, 10)}
+        </p>
+        
+    </div>
+
+    <figure class="post-img">
+        <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
+    </figure>
+    <p class="post-description">{frontmatter.description}</p>
+
+    <!-- </div> -->
+    <div class="post-content">
+        <slot />
+    </div>
+    <div class="post-tags">
+        <p>Etiquetas:</p>
+        {
+            frontmatter.tags.map((tag) => (
+                <p>
+                    <a href={`/tags/${tag}`} class="tag">
+                        {tag}
+                    </a>
+                </p>
+            ))
+        }
+    </div>
+</Layout>
+
+<style is:global>
+    .post-title {
+        font-size: 30px;
+    }
+
+    .post-info {
+        color: black;
+        margin-bottom: 30px;        
+        
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .post-img {
+        text-align: center;
+        margin-bottom: 20px;
+        & img {
+            width: 60%;
+        }
+    }
+
+    .post-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 0 10px 0;
+        & p {
+            width: 100%;
+        }
+        & img {
+            display: block;
+            float: none;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+
+        & h2 {
+            align-self: flex-start;
+            width: 100%;
+            border-bottom: solid 1px black;
+            margin-top: 10px;
+        }
+    }
+
+    .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 20px;
+        margin-top: 20px;
+
+        & p {
+            
+            & a {
+                background-color: #111;
+                padding: 3px 15px;
+                color: white;
+                text-decoration: none;
+            }
+        }
+    }
+</style>
