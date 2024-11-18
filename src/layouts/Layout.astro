@@ -1,7 +1,4 @@
 ---
-/* interface Props {
-	title: string;
-} */
 
 import "../styles/global.css";
 
@@ -20,11 +17,17 @@ const { title } = Astro.props;
 	</head>
 	<body>
 		<header>
-			<div class="logo">BLOG PROGRAMADO CON ASTRO</div>
+			<div class="logo">
+				BLOG PROGRAMADO CON ASTRO
+				<div class="responsive-menu"><i class="fa-solid fa-bars"></i></div>
+			</div>
 			<nav class="main-nav">
 				<a href="/">Inicio</a>
 				<a href="/tags">Etiquetas</a>
 				<a href="/informacion">Información</a>
+				<div class="responsiveCloseButton">
+					<i class="fa-solid fa-xmark"></i>
+				</div>
 			</nav>
 		</header>
 		<div class="container">
@@ -33,6 +36,7 @@ const { title } = Astro.props;
 		<footer>
 			<p>Web programada y diseñada por Carlos Moreno Martín</p>
 			<nav class="social">
+				
 				<a href="https://www.linkedin.com/in/carlosmorenomartindev/" target=”_blank”><i class="fa-brands fa-linkedin"></i></a>
 				<a href="https://github.com/carlosmorenodev" target=”_blank”><i class="fa-brands fa-github"></i></a>
 				<a href="https://codepen.io/carlosmmdev" target=”_blank”><i class="fa-brands fa-codepen"></i></a>
@@ -46,3 +50,17 @@ const { title } = Astro.props;
 			crossorigin="anonymous"></script>
 	</body>
 </html>
+
+<script>
+	let nav = document.querySelector('.main-nav')
+	let navResponsiveButton = document.querySelector('.responsive-menu')
+	let closeResponsiveButton = document.querySelector('.responsiveCloseButton')
+
+	navResponsiveButton?.addEventListener('click', ()=> {
+		nav?.classList.add('main-nav-active')
+	})
+
+	closeResponsiveButton?.addEventListener('click', () => {
+		nav?.classList.remove('main-nav-active')
+	})
+</script>
