@@ -1,5 +1,5 @@
 # Prueba
-![Blog sencillo con Astro](../astro-blog/public/image/blogImage.png)
+![Blog sencillo con Astro](public/image/blogImage.png)
 
 # Contacto
 - Linkedin: https://www.linkedin.com/in/carlosmorenomartindev/
